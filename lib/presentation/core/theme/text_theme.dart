@@ -23,54 +23,53 @@ class AppTextTheme {
     required this.label,
   });
 
-  static const String _meshedDisplayFamily = 'Meshed Display';
-  static const String _workSansFamily = 'Work Sans';
-  static const String _libreBodoniFamily = 'Libre Bodoni';
+  static const String _robotoFamily = 'Roboto';
+  static const String _bonaNovaSCFamily = 'Bona Nova SC';
 
   static AppTextTheme main(Color baseColor) => AppTextTheme(
         h1: TextStyle(
             fontSize: 40.sp,
-            fontFamily: _workSansFamily,
+            fontFamily: _bonaNovaSCFamily,
             fontWeight: FontWeight.normal,
             color: baseColor),
         h2: TextStyle(
             fontSize: 32.sp,
-            fontFamily: _workSansFamily,
+            fontFamily: _robotoFamily,
             fontWeight: FontWeight.normal,
             color: baseColor),
         h3: TextStyle(
             fontSize: 24.sp,
-            fontFamily: _workSansFamily,
+            fontFamily: _robotoFamily,
             fontWeight: FontWeight.normal,
             color: baseColor),
         h4: TextStyle(
             fontSize: 20.sp,
-            fontFamily: _workSansFamily,
+            fontFamily: _robotoFamily,
             fontWeight: FontWeight.normal,
             color: baseColor),
         h5: TextStyle(
             fontSize: 16.sp,
-            fontFamily: _workSansFamily,
+            fontFamily: _robotoFamily,
             fontWeight: FontWeight.normal,
             color: baseColor),
         h6: TextStyle(
             fontSize: 14.sp,
-            fontFamily: _workSansFamily,
+            fontFamily: _robotoFamily,
             fontWeight: FontWeight.normal,
             color: baseColor),
         caption: TextStyle(
             fontSize: 20.sp,
-            fontFamily: _meshedDisplayFamily,
+            fontFamily: _robotoFamily,
             fontWeight: FontWeight.normal,
             color: baseColor),
         dataLegend: TextStyle(
             fontSize: 16.sp,
-            fontFamily: _libreBodoniFamily,
+            fontFamily: _robotoFamily,
             fontWeight: FontWeight.normal,
             color: baseColor),
         label: TextStyle(
             fontSize: 14.sp,
-            fontFamily: _meshedDisplayFamily,
+            fontFamily: _robotoFamily,
             fontWeight: FontWeight.normal,
             color: baseColor),
       );

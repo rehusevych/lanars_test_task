@@ -1,3 +1,16 @@
 {
-  "lanars": "Lanars"
+  "lanars": "Lanars",
+  "signIn": "Sign in",
+  "email": "Email",
+  "password": "Password",
+  "enterYouEmail":"Enter your email",
+  "enterYouPassword":"Enter your password",
+  "login":"Log in",
+  "emailIsRequired":"Email is required",
+  "emailIsIncorrect":"Email is incorrect",
+  "emailMustBeBetween":"Email must be between 6 and 30 characters",
+  "passwordIsRequired":"Password is required",
+  "passwordMustIncludeUppercase":"Password must include uppercase, lowercase letters and a digit",
+  "passwordMustBeBetween":"Password must be between 6 and 10 characters",
+  "serverError": "Server error. Please, try again!"
 }

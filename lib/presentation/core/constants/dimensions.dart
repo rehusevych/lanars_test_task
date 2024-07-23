@@ -11,6 +11,7 @@ const double doubleLargeSpace = largeSpace * 2;
 
 const double appBorderRadius = 8.0;
 const double bottomSheetBorderRadius = 12.0;
+const double buttonBorderRadius = 100.0;
 
 const double defaultNavBarHeight = 80;
 const double defaultBottomBarElevation = 4;

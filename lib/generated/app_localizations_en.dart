@@ -6,4 +6,43 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get lanars => 'Lanars';
+
+  @override
+  String get signIn => 'Sign in';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get enterYouEmail => 'Enter your email';
+
+  @override
+  String get enterYouPassword => 'Enter your password';
+
+  @override
+  String get login => 'Log in';
+
+  @override
+  String get emailIsRequired => 'Email is required';
+
+  @override
+  String get emailIsIncorrect => 'Email is incorrect';
+
+  @override
+  String get emailMustBeBetween => 'Email must be between 6 and 30 characters';
+
+  @override
+  String get passwordIsRequired => 'Password is required';
+
+  @override
+  String get passwordMustIncludeUppercase => 'Password must include uppercase, lowercase letters and a digit';
+
+  @override
+  String get passwordMustBeBetween => 'Password must be between 6 and 10 characters';
+
+  @override
+  String get serverError => 'Server error. Please, try again!';
 }

@@ -96,6 +96,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Lanars'**
   String get lanars;
+
+  /// No description provided for @signIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get signIn;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// No description provided for @enterYouEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email'**
+  String get enterYouEmail;
+
+  /// No description provided for @enterYouPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get enterYouPassword;
+
+  /// No description provided for @login.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in'**
+  String get login;
+
+  /// No description provided for @emailIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Email is required'**
+  String get emailIsRequired;
+
+  /// No description provided for @emailIsIncorrect.
+  ///
+  /// In en, this message translates to:
+  /// **'Email is incorrect'**
+  String get emailIsIncorrect;
+
+  /// No description provided for @emailMustBeBetween.
+  ///
+  /// In en, this message translates to:
+  /// **'Email must be between 6 and 30 characters'**
+  String get emailMustBeBetween;
+
+  /// No description provided for @passwordIsRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Password is required'**
+  String get passwordIsRequired;
+
+  /// No description provided for @passwordMustIncludeUppercase.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must include uppercase, lowercase letters and a digit'**
+  String get passwordMustIncludeUppercase;
+
+  /// No description provided for @passwordMustBeBetween.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be between 6 and 10 characters'**
+  String get passwordMustBeBetween;
+
+  /// No description provided for @serverError.
+  ///
+  /// In en, this message translates to:
+  /// **'Server error. Please, try again!'**
+  String get serverError;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

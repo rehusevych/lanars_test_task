@@ -10,6 +10,9 @@
 class FontFamily {
   FontFamily._();
 
+  /// Font family: Bona Nova SC
+  static const String bonaNovaSC = 'Bona Nova SC';
+
   /// Font family: Roboto
   static const String roboto = 'Roboto';
 }
