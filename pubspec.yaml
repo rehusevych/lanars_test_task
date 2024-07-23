@@ -41,6 +41,21 @@ dev_dependencies:
 flutter:
   generate: true
   uses-material-design: true
+  
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: fonts/Roboto/Roboto-Light.ttf
+          weight: 300
+        - asset: fonts/raleway/Roboto-Regular.ttf
+          weight: 400
+        - asset: fonts/raleway/Roboto-Medium.ttf
+          weight: 500
+        - asset: fonts/raleway/Roboto-Bold.ttf
+          weight: 700
+        - asset: fonts/raleway/Roboto-Italic.ttf
+          style: italic
 
 flutter_intl:
   enabled: true
+
