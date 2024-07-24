@@ -31,7 +31,11 @@ class UserRepository {
     String email,
     String password,
   ) {
-    return _remote.signIn(SignInData(email: email, password: password));
+    saveToLocal(UserData data) => _local.saveData0(data);
+
+    return _remote
+        .signIn(SignInData(email: email, password: password))
+        .flatMap(saveToLocal);
   }
 
   TaskEither<Failure, UserData> saveToLocal(UserData user) =>

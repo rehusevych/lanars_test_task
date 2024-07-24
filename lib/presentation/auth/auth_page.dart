@@ -51,7 +51,7 @@ class _AuthPageWithBlocState extends State<_AuthPageWithBloc> {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: doubleLightSpace.w),
           child: BlocConsumer<AuthCubit, AuthState>(
-            listener: _splashBlocListener,
+            listener: _authBlocListener,
             builder: (context, state) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -98,6 +98,7 @@ class _AuthPageWithBlocState extends State<_AuthPageWithBloc> {
         labelText: context.s.email,
         hintText: context.s.enterYouEmail,
         controller: _emailController,
+        validate: _validateForm,
         validator: (text) => validateEmail(context, text),
         isEnabled: state.maybeWhen(
           orElse: () => true,
@@ -112,6 +113,7 @@ class _AuthPageWithBlocState extends State<_AuthPageWithBloc> {
         hintText: context.s.enterYouPassword,
         controller: _passwordController,
         isPassword: true,
+        validate: _validateForm,
         validator: (text) => validatePassword(context, text),
         isEnabled: state.maybeWhen(
           orElse: () => true,
@@ -128,12 +130,12 @@ class _AuthPageWithBlocState extends State<_AuthPageWithBloc> {
     return AppButton(
       text: context.s.login,
       onPressed: () {
-        // if (_formKey.currentState!.validate()) {
-        context.read<AuthCubit>().login(
-              email: _emailController.text,
-              password: _passwordController.text,
-            );
-        //}
+        if (_formKey.currentState!.validate()) {
+          context.read<AuthCubit>().login(
+                email: _emailController.text,
+                password: _passwordController.text,
+              );
+        }
       },
       borderColor: AppColors.primary,
       textColor: Colors.white,
@@ -153,7 +155,7 @@ class _AuthPageWithBlocState extends State<_AuthPageWithBloc> {
     );
   }
 
-  void _splashBlocListener(
+  void _authBlocListener(
     BuildContext context,
     AuthState state,
   ) {
@@ -162,15 +164,16 @@ class _AuthPageWithBlocState extends State<_AuthPageWithBloc> {
         context,
         context.s.serverError,
       ),
-      signInSuccess: (user) => context.router.replaceAll(
-        [
-          const AuthenticatedWrapperRouter(
-            children: [
-              HomeRoute(),
-            ],
-          )
-        ],
+      signInSuccess: (user) => context.replaceRoute(
+        const AuthenticatedWrapperRouter(),
       ),
     );
+  }
+
+  void _validateForm() {
+    if (_emailController.text.isNotEmpty &&
+        _passwordController.text.isNotEmpty) {
+      _formKey.currentState!.validate();
+    }
   }
 }

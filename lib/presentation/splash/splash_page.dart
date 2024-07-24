@@ -79,7 +79,7 @@ class SplashPage extends StatelessWidget {
       ),
       homeWithUser: (user) => Future.delayed(
         const Duration(seconds: 2),
-        () => context.replaceRoute(const SplashRoute()),
+        () => context.replaceRoute(const AuthenticatedWrapperRouter()),
       ),
     );
   }

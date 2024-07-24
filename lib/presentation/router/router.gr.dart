@@ -15,7 +15,7 @@ import 'package:auto_route/auto_route.dart' as _i5;
 import 'package:flutter/material.dart' as _i6;
 import 'package:lanars_test_task/presentation/auth/auth_page.dart' as _i2;
 import 'package:lanars_test_task/presentation/home/home_page.dart' as _i4;
-import 'package:lanars_test_task/presentation/router/wrapper/authenticatedWrapper.dart'
+import 'package:lanars_test_task/presentation/router/wrapper/authenticated_wrapper.dart'
     as _i3;
 import 'package:lanars_test_task/presentation/splash/splash_page.dart' as _i1;
 
@@ -67,7 +67,7 @@ class AppRouter extends _i5.RootStackRouter {
         ),
         _i5.RouteConfig(
           AuthenticatedWrapperRouter.name,
-          path: '/',
+          path: '/authenticated-wrapper-page',
           children: [
             _i5.RouteConfig(
               HomeRoute.name,
@@ -109,7 +109,7 @@ class AuthenticatedWrapperRouter extends _i5.PageRouteInfo<void> {
   const AuthenticatedWrapperRouter({List<_i5.PageRouteInfo>? children})
       : super(
           AuthenticatedWrapperRouter.name,
-          path: '/',
+          path: '/authenticated-wrapper-page',
           initialChildren: children,
         );
 

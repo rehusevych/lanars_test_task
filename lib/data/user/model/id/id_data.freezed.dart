@@ -20,8 +20,10 @@ IdData _$IdDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$IdData {
-  String get name => throw _privateConstructorUsedError;
-  String get value => throw _privateConstructorUsedError;
+  @HiveField(0)
+  String? get name => throw _privateConstructorUsedError;
+  @HiveField(1)
+  String? get value => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +35,7 @@ abstract class $IdDataCopyWith<$Res> {
   factory $IdDataCopyWith(IdData value, $Res Function(IdData) then) =
       _$IdDataCopyWithImpl<$Res, IdData>;
   @useResult
-  $Res call({String name, String value});
+  $Res call({@HiveField(0) String? name, @HiveField(1) String? value});
 }
 
 /// @nodoc
@@ -49,18 +51,18 @@ class _$IdDataCopyWithImpl<$Res, $Val extends IdData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? value = null,
+    Object? name = freezed,
+    Object? value = freezed,
   }) {
     return _then(_value.copyWith(
-      name: null == name
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      value: null == value
+              as String?,
+      value: freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -72,7 +74,7 @@ abstract class _$$IdDataImplCopyWith<$Res> implements $IdDataCopyWith<$Res> {
       __$$IdDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String value});
+  $Res call({@HiveField(0) String? name, @HiveField(1) String? value});
 }
 
 /// @nodoc
@@ -86,34 +88,37 @@ class __$$IdDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? value = null,
+    Object? name = freezed,
+    Object? value = freezed,
   }) {
     return _then(_$IdDataImpl(
-      name: null == name
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      value: null == value
+              as String?,
+      value: freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
+@HiveType(typeId: userIdTypeId)
 class _$IdDataImpl implements _IdData {
-  const _$IdDataImpl({required this.name, required this.value});
+  const _$IdDataImpl({@HiveField(0) this.name, @HiveField(1) this.value});
 
   factory _$IdDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$IdDataImplFromJson(json);
 
   @override
-  final String name;
+  @HiveField(0)
+  final String? name;
   @override
-  final String value;
+  @HiveField(1)
+  final String? value;
 
   @override
   String toString() {
@@ -149,14 +154,17 @@ class _$IdDataImpl implements _IdData {
 
 abstract class _IdData implements IdData {
   const factory _IdData(
-      {required final String name, required final String value}) = _$IdDataImpl;
+      {@HiveField(0) final String? name,
+      @HiveField(1) final String? value}) = _$IdDataImpl;
 
   factory _IdData.fromJson(Map<String, dynamic> json) = _$IdDataImpl.fromJson;
 
   @override
-  String get name;
+  @HiveField(0)
+  String? get name;
   @override
-  String get value;
+  @HiveField(1)
+  String? get value;
   @override
   @JsonKey(ignore: true)
   _$$IdDataImplCopyWith<_$IdDataImpl> get copyWith =>

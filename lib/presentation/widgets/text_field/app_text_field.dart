@@ -1,6 +1,6 @@
+import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lanars_test_task/presentation/auth/utils/utils.dart';
 import 'package:lanars_test_task/presentation/core/colors.dart';
 import 'package:lanars_test_task/presentation/core/constants/dimensions.dart';
 import 'package:lanars_test_task/presentation/core/theme/theme.dart';
@@ -11,7 +11,7 @@ class AppTextField extends StatefulWidget {
   final bool isPassword;
   final bool isEnabled;
   final TextInputType keyboardType;
-  final Function(String)? onChanged;
+  final VoidCallback? validate;
   final String? Function(String?) validator;
   final TextEditingController controller;
 
@@ -24,7 +24,7 @@ class AppTextField extends StatefulWidget {
     this.keyboardType = TextInputType.text,
     this.isPassword = false,
     this.isEnabled = true,
-    this.onChanged,
+    this.validate,
   });
 
   @override
@@ -39,7 +39,9 @@ class _AppTextFieldState extends State<AppTextField> {
   void didChangeDependencies() {
     _focusNode.addListener(() {
       setState(() {});
+      widget.validate?.call();
     });
+
     super.didChangeDependencies();
   }
 
@@ -52,7 +54,6 @@ class _AppTextFieldState extends State<AppTextField> {
       enabled: widget.isEnabled,
       obscureText: widget.isPassword && !_isPasswordVisible,
       textInputAction: TextInputAction.next,
-      onChanged: (text) => widget.onChanged?.call(text),
       validator: widget.validator,
       style: context.appTextTheme.h5.paint(AppColors.textFieldTextColor),
       decoration: InputDecoration(

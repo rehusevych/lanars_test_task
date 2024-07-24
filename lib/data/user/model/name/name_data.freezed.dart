@@ -20,8 +20,11 @@ NameData _$NameDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$NameData {
+  @HiveField(0)
   String get title => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get first => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get last => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +38,10 @@ abstract class $NameDataCopyWith<$Res> {
   factory $NameDataCopyWith(NameData value, $Res Function(NameData) then) =
       _$NameDataCopyWithImpl<$Res, NameData>;
   @useResult
-  $Res call({String title, String first, String last});
+  $Res call(
+      {@HiveField(0) String title,
+      @HiveField(1) String first,
+      @HiveField(2) String last});
 }
 
 /// @nodoc
@@ -80,7 +86,10 @@ abstract class _$$NameDataImplCopyWith<$Res>
       __$$NameDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, String first, String last});
+  $Res call(
+      {@HiveField(0) String title,
+      @HiveField(1) String first,
+      @HiveField(2) String last});
 }
 
 /// @nodoc
@@ -117,18 +126,24 @@ class __$$NameDataImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
+@HiveType(typeId: userNameTypeId)
 class _$NameDataImpl implements _NameData {
   const _$NameDataImpl(
-      {required this.title, required this.first, required this.last});
+      {@HiveField(0) required this.title,
+      @HiveField(1) required this.first,
+      @HiveField(2) required this.last});
 
   factory _$NameDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$NameDataImplFromJson(json);
 
   @override
+  @HiveField(0)
   final String title;
   @override
+  @HiveField(1)
   final String first;
   @override
+  @HiveField(2)
   final String last;
 
   @override
@@ -166,18 +181,21 @@ class _$NameDataImpl implements _NameData {
 
 abstract class _NameData implements NameData {
   const factory _NameData(
-      {required final String title,
-      required final String first,
-      required final String last}) = _$NameDataImpl;
+      {@HiveField(0) required final String title,
+      @HiveField(1) required final String first,
+      @HiveField(2) required final String last}) = _$NameDataImpl;
 
   factory _NameData.fromJson(Map<String, dynamic> json) =
       _$NameDataImpl.fromJson;
 
   @override
+  @HiveField(0)
   String get title;
   @override
+  @HiveField(1)
   String get first;
   @override
+  @HiveField(2)
   String get last;
   @override
   @JsonKey(ignore: true)

@@ -20,8 +20,11 @@ PictureData _$PictureDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PictureData {
+  @HiveField(0)
   String get large => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get medium => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get thumbnail => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +39,10 @@ abstract class $PictureDataCopyWith<$Res> {
           PictureData value, $Res Function(PictureData) then) =
       _$PictureDataCopyWithImpl<$Res, PictureData>;
   @useResult
-  $Res call({String large, String medium, String thumbnail});
+  $Res call(
+      {@HiveField(0) String large,
+      @HiveField(1) String medium,
+      @HiveField(2) String thumbnail});
 }
 
 /// @nodoc
@@ -81,7 +87,10 @@ abstract class _$$PictureDataImplCopyWith<$Res>
       __$$PictureDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String large, String medium, String thumbnail});
+  $Res call(
+      {@HiveField(0) String large,
+      @HiveField(1) String medium,
+      @HiveField(2) String thumbnail});
 }
 
 /// @nodoc
@@ -118,18 +127,24 @@ class __$$PictureDataImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
+@HiveType(typeId: userPictureTypeId)
 class _$PictureDataImpl implements _PictureData {
   const _$PictureDataImpl(
-      {required this.large, required this.medium, required this.thumbnail});
+      {@HiveField(0) required this.large,
+      @HiveField(1) required this.medium,
+      @HiveField(2) required this.thumbnail});
 
   factory _$PictureDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$PictureDataImplFromJson(json);
 
   @override
+  @HiveField(0)
   final String large;
   @override
+  @HiveField(1)
   final String medium;
   @override
+  @HiveField(2)
   final String thumbnail;
 
   @override
@@ -168,18 +183,21 @@ class _$PictureDataImpl implements _PictureData {
 
 abstract class _PictureData implements PictureData {
   const factory _PictureData(
-      {required final String large,
-      required final String medium,
-      required final String thumbnail}) = _$PictureDataImpl;
+      {@HiveField(0) required final String large,
+      @HiveField(1) required final String medium,
+      @HiveField(2) required final String thumbnail}) = _$PictureDataImpl;
 
   factory _PictureData.fromJson(Map<String, dynamic> json) =
       _$PictureDataImpl.fromJson;
 
   @override
+  @HiveField(0)
   String get large;
   @override
+  @HiveField(1)
   String get medium;
   @override
+  @HiveField(2)
   String get thumbnail;
   @override
   @JsonKey(ignore: true)

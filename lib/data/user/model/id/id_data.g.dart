@@ -7,8 +7,8 @@ part of 'id_data.dart';
 // **************************************************************************
 
 _$IdDataImpl _$$IdDataImplFromJson(Map<String, dynamic> json) => _$IdDataImpl(
-      name: json['name'] as String,
-      value: json['value'] as String,
+      name: json['name'] as String?,
+      value: json['value'] as String?,
     );
 
 Map<String, dynamic> _$$IdDataImplToJson(_$IdDataImpl instance) =>

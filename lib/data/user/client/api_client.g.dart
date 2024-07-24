@@ -37,7 +37,7 @@ class _AuthApiClient implements AuthApiClient {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = UserData.fromJson(_result.data!);
+    final value = await compute(deserializeUserData, _result.data!);
     return value;
   }
 
