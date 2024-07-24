@@ -35,7 +35,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profile => 'Profile';
 
   @override
+  String get cancel => 'Cancel';
+
+  @override
   String get noPosts => 'No posts';
+
+  @override
+  String get areYouSureYouWantToLogout => 'Are you sure you want to logout?';
 
   @override
   String get thereAreCurrentlyNoPosts => 'There are currently no posts available';

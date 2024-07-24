@@ -10,6 +10,7 @@ import 'package:lanars_test_task/presentation/core/constants/dimensions.dart';
 import 'package:lanars_test_task/presentation/core/theme/theme.dart';
 import 'package:lanars_test_task/presentation/core/util/util.dart';
 import 'package:lanars_test_task/presentation/widgets/cards/base_card.dart';
+import 'package:lanars_test_task/presentation/widgets/drawer/widgets/logout_dialog.dart';
 
 const double _avatarSize = 56.0;
 const double _iconSize = 25.0;
@@ -103,7 +104,10 @@ Widget _buildUserAvatar(String path) {
 Widget _buildLogoutButton(BuildContext context) {
   return IconButton(
     onPressed: () {
-      logout(context);
+      showLogoutDialog(
+        context,
+        onPressed: () => logout(context),
+      );
     },
     icon: Row(
       mainAxisSize: MainAxisSize.min,

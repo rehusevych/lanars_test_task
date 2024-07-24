@@ -151,11 +151,23 @@ abstract class AppLocalizations {
   /// **'Profile'**
   String get profile;
 
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
   /// No description provided for @noPosts.
   ///
   /// In en, this message translates to:
   /// **'No posts'**
   String get noPosts;
+
+  /// No description provided for @areYouSureYouWantToLogout.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to logout?'**
+  String get areYouSureYouWantToLogout;
 
   /// No description provided for @thereAreCurrentlyNoPosts.
   ///
