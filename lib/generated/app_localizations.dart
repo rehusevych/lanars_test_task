@@ -133,6 +133,18 @@ abstract class AppLocalizations {
   /// **'Log in'**
   String get login;
 
+  /// No description provided for @listPage.
+  ///
+  /// In en, this message translates to:
+  /// **'List page'**
+  String get listPage;
+
+  /// No description provided for @profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profile;
+
   /// No description provided for @emailIsRequired.
   ///
   /// In en, this message translates to:

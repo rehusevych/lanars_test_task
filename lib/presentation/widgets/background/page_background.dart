@@ -4,12 +4,14 @@ import 'package:lanars_test_task/presentation/core/colors.dart';
 class PageBackground extends StatelessWidget {
   final Color backgroundColor;
   final AppBar? appBar;
+  final Drawer? drawer;
   final Widget child;
 
   const PageBackground({
     super.key,
     required this.child,
     this.appBar,
+    this.drawer,
     this.backgroundColor = AppColors.background,
   });
 
@@ -18,9 +20,8 @@ class PageBackground extends StatelessWidget {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: appBar,
-      body: SafeArea(
-        child: child,
-      ),
+      drawer: drawer,
+      body: child,
     );
   }
 }

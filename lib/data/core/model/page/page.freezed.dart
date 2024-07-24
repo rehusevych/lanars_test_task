@@ -20,10 +20,13 @@ PageData _$PageDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PageData {
-  int get size => throw _privateConstructorUsedError;
-  int get totalElements => throw _privateConstructorUsedError;
-  int get totalPages => throw _privateConstructorUsedError;
-  int get number => throw _privateConstructorUsedError;
+  @JsonKey(name: "per_page")
+  int get perPage => throw _privateConstructorUsedError;
+  @JsonKey(name: "total_results")
+  int get totalResults => throw _privateConstructorUsedError;
+  @JsonKey(name: "next_page")
+  String get nextPage => throw _privateConstructorUsedError;
+  int get page => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +39,11 @@ abstract class $PageDataCopyWith<$Res> {
   factory $PageDataCopyWith(PageData value, $Res Function(PageData) then) =
       _$PageDataCopyWithImpl<$Res, PageData>;
   @useResult
-  $Res call({int size, int totalElements, int totalPages, int number});
+  $Res call(
+      {@JsonKey(name: "per_page") int perPage,
+      @JsonKey(name: "total_results") int totalResults,
+      @JsonKey(name: "next_page") String nextPage,
+      int page});
 }
 
 /// @nodoc
@@ -52,27 +59,27 @@ class _$PageDataCopyWithImpl<$Res, $Val extends PageData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? size = null,
-    Object? totalElements = null,
-    Object? totalPages = null,
-    Object? number = null,
+    Object? perPage = null,
+    Object? totalResults = null,
+    Object? nextPage = null,
+    Object? page = null,
   }) {
     return _then(_value.copyWith(
-      size: null == size
-          ? _value.size
-          : size // ignore: cast_nullable_to_non_nullable
+      perPage: null == perPage
+          ? _value.perPage
+          : perPage // ignore: cast_nullable_to_non_nullable
               as int,
-      totalElements: null == totalElements
-          ? _value.totalElements
-          : totalElements // ignore: cast_nullable_to_non_nullable
+      totalResults: null == totalResults
+          ? _value.totalResults
+          : totalResults // ignore: cast_nullable_to_non_nullable
               as int,
-      totalPages: null == totalPages
-          ? _value.totalPages
-          : totalPages // ignore: cast_nullable_to_non_nullable
-              as int,
-      number: null == number
-          ? _value.number
-          : number // ignore: cast_nullable_to_non_nullable
+      nextPage: null == nextPage
+          ? _value.nextPage
+          : nextPage // ignore: cast_nullable_to_non_nullable
+              as String,
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -86,7 +93,11 @@ abstract class _$$PageDataImplCopyWith<$Res>
       __$$PageDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int size, int totalElements, int totalPages, int number});
+  $Res call(
+      {@JsonKey(name: "per_page") int perPage,
+      @JsonKey(name: "total_results") int totalResults,
+      @JsonKey(name: "next_page") String nextPage,
+      int page});
 }
 
 /// @nodoc
@@ -100,27 +111,27 @@ class __$$PageDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? size = null,
-    Object? totalElements = null,
-    Object? totalPages = null,
-    Object? number = null,
+    Object? perPage = null,
+    Object? totalResults = null,
+    Object? nextPage = null,
+    Object? page = null,
   }) {
     return _then(_$PageDataImpl(
-      size: null == size
-          ? _value.size
-          : size // ignore: cast_nullable_to_non_nullable
+      perPage: null == perPage
+          ? _value.perPage
+          : perPage // ignore: cast_nullable_to_non_nullable
               as int,
-      totalElements: null == totalElements
-          ? _value.totalElements
-          : totalElements // ignore: cast_nullable_to_non_nullable
+      totalResults: null == totalResults
+          ? _value.totalResults
+          : totalResults // ignore: cast_nullable_to_non_nullable
               as int,
-      totalPages: null == totalPages
-          ? _value.totalPages
-          : totalPages // ignore: cast_nullable_to_non_nullable
-              as int,
-      number: null == number
-          ? _value.number
-          : number // ignore: cast_nullable_to_non_nullable
+      nextPage: null == nextPage
+          ? _value.nextPage
+          : nextPage // ignore: cast_nullable_to_non_nullable
+              as String,
+      page: null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -130,31 +141,31 @@ class __$$PageDataImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PageDataImpl extends _PageData with DiagnosticableTreeMixin {
   const _$PageDataImpl(
-      {this.size = pageSize,
-      this.totalElements = 0,
-      this.totalPages = 0,
-      this.number = 0})
+      {@JsonKey(name: "per_page") this.perPage = pageSize,
+      @JsonKey(name: "total_results") this.totalResults = 0,
+      @JsonKey(name: "next_page") this.nextPage = '',
+      this.page = 0})
       : super._();
 
   factory _$PageDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$PageDataImplFromJson(json);
 
   @override
-  @JsonKey()
-  final int size;
+  @JsonKey(name: "per_page")
+  final int perPage;
+  @override
+  @JsonKey(name: "total_results")
+  final int totalResults;
+  @override
+  @JsonKey(name: "next_page")
+  final String nextPage;
   @override
   @JsonKey()
-  final int totalElements;
-  @override
-  @JsonKey()
-  final int totalPages;
-  @override
-  @JsonKey()
-  final int number;
+  final int page;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'PageData(size: $size, totalElements: $totalElements, totalPages: $totalPages, number: $number)';
+    return 'PageData(perPage: $perPage, totalResults: $totalResults, nextPage: $nextPage, page: $page)';
   }
 
   @override
@@ -162,10 +173,10 @@ class _$PageDataImpl extends _PageData with DiagnosticableTreeMixin {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'PageData'))
-      ..add(DiagnosticsProperty('size', size))
-      ..add(DiagnosticsProperty('totalElements', totalElements))
-      ..add(DiagnosticsProperty('totalPages', totalPages))
-      ..add(DiagnosticsProperty('number', number));
+      ..add(DiagnosticsProperty('perPage', perPage))
+      ..add(DiagnosticsProperty('totalResults', totalResults))
+      ..add(DiagnosticsProperty('nextPage', nextPage))
+      ..add(DiagnosticsProperty('page', page));
   }
 
   @override
@@ -173,18 +184,18 @@ class _$PageDataImpl extends _PageData with DiagnosticableTreeMixin {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PageDataImpl &&
-            (identical(other.size, size) || other.size == size) &&
-            (identical(other.totalElements, totalElements) ||
-                other.totalElements == totalElements) &&
-            (identical(other.totalPages, totalPages) ||
-                other.totalPages == totalPages) &&
-            (identical(other.number, number) || other.number == number));
+            (identical(other.perPage, perPage) || other.perPage == perPage) &&
+            (identical(other.totalResults, totalResults) ||
+                other.totalResults == totalResults) &&
+            (identical(other.nextPage, nextPage) ||
+                other.nextPage == nextPage) &&
+            (identical(other.page, page) || other.page == page));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, size, totalElements, totalPages, number);
+      Object.hash(runtimeType, perPage, totalResults, nextPage, page);
 
   @JsonKey(ignore: true)
   @override
@@ -202,23 +213,26 @@ class _$PageDataImpl extends _PageData with DiagnosticableTreeMixin {
 
 abstract class _PageData extends PageData {
   const factory _PageData(
-      {final int size,
-      final int totalElements,
-      final int totalPages,
-      final int number}) = _$PageDataImpl;
+      {@JsonKey(name: "per_page") final int perPage,
+      @JsonKey(name: "total_results") final int totalResults,
+      @JsonKey(name: "next_page") final String nextPage,
+      final int page}) = _$PageDataImpl;
   const _PageData._() : super._();
 
   factory _PageData.fromJson(Map<String, dynamic> json) =
       _$PageDataImpl.fromJson;
 
   @override
-  int get size;
+  @JsonKey(name: "per_page")
+  int get perPage;
   @override
-  int get totalElements;
+  @JsonKey(name: "total_results")
+  int get totalResults;
   @override
-  int get totalPages;
+  @JsonKey(name: "next_page")
+  String get nextPage;
   @override
-  int get number;
+  int get page;
   @override
   @JsonKey(ignore: true)
   _$$PageDataImplCopyWith<_$PageDataImpl> get copyWith =>

@@ -88,7 +88,7 @@ class BoxStore<Input, Data> implements Store<Input, Data> {
     final data = await getData(input)
         .orElse(getRemoteOnLeft)
         .run()
-        .then((value) => value.fold((l) => null, (data) => data));
+        .then((value) => value.fold((l) => null, (r) => r));
 
     yield data == null
         ? Either.left(const Failure.empty())
@@ -101,26 +101,15 @@ class BoxStore<Input, Data> implements Store<Input, Data> {
         .map((event) => Either.right(event as Data));
   }
 
-  TaskEither<Failure, void> clear() {
-    onError(Object error, StackTrace stackTrace) => catchBoxCrash(
-          error,
-          stackTrace,
-          'while removing data for type $Data from local',
-        );
-
-    return TaskEither.tryCatch(
-      () => box.clear(),
-      onError,
-    );
-  }
+  Future<void> clear() => box.clear();
 }
 
-extension BoxStoreEx<Data> on BoxStore<Unit, Data> {
-  TaskEither<Failure, Data> getData0() => getData(unit);
+extension BoxStoreEx<Data> on BoxStore<String, Data> {
+  TaskEither<Failure, Data> getData0() => getData('');
 
-  TaskEither<Failure, Data> saveData0(Data data) => saveData(unit, data);
+  TaskEither<Failure, Data> saveData0(Data data) => saveData('', data);
 
-  Stream<Either<Failure, Data>> watch0() => watch(unit);
+  Stream<Either<Failure, Data>> watch0() => watch('');
 }
 
 class ListBoxStore<Input, Data, Helper extends HelperData<Data>>
@@ -179,7 +168,7 @@ class ListBoxStore<Input, Data, Helper extends HelperData<Data>>
     final data = await getData(input)
         .orElse(getRemoteOnLeft)
         .run()
-        .then((value) => value.fold((l) => null, (data) => data));
+        .then((value) => value.fold((l) => null, (r) => r));
 
     yield data == null
         ? Either.left(const Failure.empty())
@@ -193,4 +182,21 @@ class ListBoxStore<Input, Data, Helper extends HelperData<Data>>
   }
 
   Future<void> clear() => box.clear();
+}
+
+extension ListBoxStoreEx<Data, Helper extends HelperData<Data>>
+    on ListBoxStore<String, Data, Helper> {
+  TaskEither<Failure, List<Data>> getData0() {
+    return getData('');
+  }
+
+  TaskEither<Failure, List<Data>> saveData0(Helper data) {
+    return saveData('', data);
+  }
+
+  Stream<Either<Failure, List<Data>>> watch0({
+    TaskEither<Failure, List<Data>> Function()? onGetFromRemote,
+  }) {
+    return watch('', onGetFromRemote: onGetFromRemote);
+  }
 }

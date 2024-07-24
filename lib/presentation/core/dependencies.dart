@@ -20,6 +20,7 @@ class _ProvideDependencies extends StatelessWidget {
         ...createLazyBoxProviders(),
         ..._createAuthProviders(),
         ..._createUserProviders(),
+        ..._createPostsProviders(),
       ],
       child: child,
     );
@@ -72,6 +73,26 @@ class _ProvideDependencies extends StatelessWidget {
             remote: c.read(),
             local: c.read(),
             tokenStore: c.read(),
+          ),
+        ),
+      ];
+
+  List<Provider> _createPostsProviders() => <Provider>[
+        Provider<PostsApiClient>(
+          create: (c) => PostsApiClient(c.read()),
+        ),
+        Provider<PostsServiceRemote>(
+          create: (c) => PostsServiceRemote(
+            c.read<PostsApiClient>().getPosts,
+          ),
+        ),
+        Provider<PostsServiceLocal>(
+          create: (c) => PostsServiceLocal(c.read()),
+        ),
+        Provider<PostsRepository>(
+          create: (c) => PostsRepository(
+            remote: c.read(),
+            local: c.read(),
           ),
         ),
       ];

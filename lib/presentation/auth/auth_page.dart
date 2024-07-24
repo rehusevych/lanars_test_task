@@ -44,6 +44,13 @@ class _AuthPageWithBlocState extends State<_AuthPageWithBloc> {
   final _formKey = GlobalKey<FormState>();
 
   @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: unFocus,

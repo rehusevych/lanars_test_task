@@ -8,16 +8,16 @@ part of 'page.dart';
 
 _$PageDataImpl _$$PageDataImplFromJson(Map<String, dynamic> json) =>
     _$PageDataImpl(
-      size: (json['size'] as num?)?.toInt() ?? pageSize,
-      totalElements: (json['totalElements'] as num?)?.toInt() ?? 0,
-      totalPages: (json['totalPages'] as num?)?.toInt() ?? 0,
-      number: (json['number'] as num?)?.toInt() ?? 0,
+      perPage: (json['per_page'] as num?)?.toInt() ?? pageSize,
+      totalResults: (json['total_results'] as num?)?.toInt() ?? 0,
+      nextPage: json['next_page'] as String? ?? '',
+      page: (json['page'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$PageDataImplToJson(_$PageDataImpl instance) =>
     <String, dynamic>{
-      'size': instance.size,
-      'totalElements': instance.totalElements,
-      'totalPages': instance.totalPages,
-      'number': instance.number,
+      'per_page': instance.perPage,
+      'total_results': instance.totalResults,
+      'next_page': instance.nextPage,
+      'page': instance.page,
     };

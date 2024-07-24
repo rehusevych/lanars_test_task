@@ -19,10 +19,8 @@ class PaginationData<T> with _$PaginationData<T> {
     String field,
   ) {
     return PaginationData(
-      embedded: EmbeddedListData.fromJson(json['_embedded'], fromJsonT, field),
-      page: json['page'] == null
-          ? const PageData()
-          : PageData.fromJson(json['page'] as Map<String, dynamic>),
+      embedded: EmbeddedListData.fromJson(json['photos'], fromJsonT, field),
+      page: PageData.fromJson(json),
     );
   }
 }

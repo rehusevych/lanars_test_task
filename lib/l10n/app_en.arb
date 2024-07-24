@@ -6,6 +6,8 @@
   "enterYouEmail":"Enter your email",
   "enterYouPassword":"Enter your password",
   "login":"Log in",
+  "listPage":"List page",
+  "profile":"Profile",
   "emailIsRequired":"Email is required",
   "emailIsIncorrect":"Email is incorrect",
   "emailMustBeBetween":"Email must be between 6 and 30 characters",

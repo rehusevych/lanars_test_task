@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +10,10 @@ import 'package:lanars_test_task/presentation/core/colors.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:lanars_test_task/presentation/core/constants/dimensions.dart';
 import 'package:lanars_test_task/presentation/core/theme/theme.dart';
+import 'package:photo_view/photo_view.dart';
 
 const double _iconSize = 20.0;
+const double _buttonSize = 52.0;
 
 typedef Predicate<T> = bool Function(T item);
 
@@ -181,4 +186,53 @@ String formatPrice(double price) {
 
 double calculateDiscount(double price, double discount) {
   return price - (price / 100 * discount);
+}
+
+void openPhotoFullSize(
+  BuildContext context, {
+  required String path,
+}) {
+  final provider =
+      Uri.parse(path).isAbsolute ? NetworkImage(path) : FileImage(File(path));
+  final imageProvider = provider as ImageProvider<Object>?;
+
+  showDialog(
+    context: context,
+    useSafeArea: false,
+    builder: (dialogContext) {
+      return Scaffold(
+        body: Stack(
+          children: [
+            PhotoView(imageProvider: imageProvider),
+            _buildCloseButton(dialogContext),
+          ],
+        ),
+      );
+    },
+  );
+}
+
+Widget _buildCloseButton(BuildContext context) {
+  return Positioned(
+    top: MediaQuery.of(context).padding.top + largeSpace,
+    right: largeSpace,
+    child: Container(
+      height: _buttonSize,
+      width: _buttonSize,
+      decoration: BoxDecoration(
+        color: AppColors.background,
+        borderRadius: BorderRadius.circular(appBorderRadius),
+      ),
+      child: IconButton(
+        icon: const Icon(
+          Icons.close,
+          color: AppColors.surface,
+          size: _iconSize,
+        ),
+        onPressed: () {
+          context.router.pop();
+        },
+      ),
+    ),
+  );
 }

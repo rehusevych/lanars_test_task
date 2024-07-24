@@ -30,6 +30,7 @@ class AppColors {
   static const Color snackBarError = Color(0xFFF5EFF7);
   static const Color inverseSurface = Color(0xFF2F3033);
   static const Color textFieldBorder = Color(0xFF73777F);
+  static const Color lightOutline = Color(0xFFC3C6CF);
   static const Color textFieldTextColor = Color(0xFF43474E);
   static const Color error = Color(0xFFF44336);
   static const Color success = Color(0xFF4CAF50);

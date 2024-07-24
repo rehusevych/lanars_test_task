@@ -19,10 +19,22 @@ class $AssetsGifGen {
   List<AssetGenImage> get values => [logo];
 }
 
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
+
+  /// File path: assets/images/placeholder.jpg
+  AssetGenImage get placeholder =>
+      const AssetGenImage('assets/images/placeholder.jpg');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [placeholder];
+}
+
 class Assets {
   Assets._();
 
   static const $AssetsGifGen gif = $AssetsGifGen();
+  static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 
 class AssetGenImage {

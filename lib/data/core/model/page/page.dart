@@ -5,25 +5,25 @@ part 'page.g.dart';
 
 part 'page.freezed.dart';
 
-const int pageSize = kDebugMode ? 5 : 20;
+const int pageSize = kDebugMode ? 20 : 50;
 
 @freezed
 class PageData with _$PageData {
   const PageData._();
 
   const factory PageData({
-    @Default(pageSize) int size,
-    @Default(0) int totalElements,
-    @Default(0) int totalPages,
-    @Default(0) int number,
+    @JsonKey(name: "per_page") @Default(pageSize) int perPage,
+    @JsonKey(name: "total_results") @Default(0) int totalResults,
+    @JsonKey(name: "next_page") @Default('') String nextPage,
+    @Default(0) int page,
   }) = _PageData;
 
-  bool get isLastPage => (number >= totalPages - 1) || totalPages == 0;
+  bool get isLastPage => page * perPage <= totalResults;
 
   Map<String, dynamic> toQueries() {
     return <String, dynamic>{
-      'page': number,
-      'size': size,
+      'page': page,
+      'per_page': perPage,
     };
   }
 

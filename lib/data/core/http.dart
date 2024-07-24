@@ -9,16 +9,17 @@ import 'package:lanars_test_task/data/core/token.dart';
 import 'package:lanars_test_task/data/core/utils/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-const baseUrl = "https://www.pexels.com/api";
-const authBaseUrl = "https://randomuser.me/api";
+const String baseUrl = "https://api.pexels.com/";
+const String apiVersion = "v1";
+const String authBaseUrl = "https://randomuser.me/api";
+const String _apiKey =
+    "xqfrzIkQxk54Bxu0EIhdi9r9QNlqpEePRohGuv6Cjb4lmYT57SpewpLt";
+const int _connectionTimeout = 15000;
+const int _receiveTimeout = 15000;
 
-const _connectionTimeout = 15000;
-const _receiveTimeout = 15000;
+Map<String, String> authHeader() => {"Authorization": _apiKey};
 
-Map<String, String> authHeader(String token) =>
-    {"Authorization": "Bearer $token"};
-
-Options authOptions(String token) => Options();
+Options authOptions(String token) => Options(headers: authHeader());
 
 Dio createDio(String baseUrl, {Map<String, dynamic>? headers}) {
   Dio dio = Dio();
@@ -171,7 +172,7 @@ class RefreshInterceptor extends Interceptor with ChangeNotifier {
     final code = maybeResponseCode(err);
     if (code == 401 || code == 402) {
       try {
-        final refreshedToken = await refresher.refresh();
+        final refreshedToken = _apiKey;
 
         //update token based on the new refresh token
         final options = err.requestOptions.copyWith(
