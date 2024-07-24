@@ -15,15 +15,15 @@ const double _titleMaxLeftPadding =
 const double _avatarSizeCollapsed = 45.0;
 const double _moodButtonSize = 28.0;
 
-const TextStyle _titleTextStyle32 = TextStyle(
-  fontSize: 32,
+const TextStyle _titleTextStyle22 = TextStyle(
+  fontSize: 22,
   fontFamily: 'Roboto',
   fontWeight: FontWeight.w700,
   height: 1.6,
 );
 
-const TextStyle _titleTextStyle40 = TextStyle(
-  fontSize: 40,
+const TextStyle _titleTextStyle36 = TextStyle(
+  fontSize: 36,
   fontFamily: 'Roboto',
   fontWeight: FontWeight.w700,
   height: 1.6,
@@ -34,8 +34,8 @@ const double _elevation = 4.0;
 typedef TrailingBuilder = Widget Function(BuildContext context, double offset);
 
 enum TitleStyle {
-  regular(_titleTextStyle32),
-  large(_titleTextStyle40);
+  regular(_titleTextStyle22),
+  large(_titleTextStyle36);
 
   const TitleStyle(this.style);
 
@@ -144,8 +144,9 @@ class CollapsedHeaderDelegate extends SliverPersistentHeaderDelegate {
                           ],
                           Text(
                             title,
-                            style: context.appTextTheme.h2
-                                .paint(AppColors.surface),
+                            style: context.appTextTheme.h3
+                                .paint(AppColors.surface)
+                                .align(height: 1.8),
                           ),
                           if (titleTrailingBuilder != null) ...[
                             const SizedBox(width: lightSpace),
