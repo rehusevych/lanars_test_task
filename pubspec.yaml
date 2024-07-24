@@ -54,7 +54,16 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   json_serializable: ^6.1.4
   retrofit_generator: ^4.2.0
+  flutter_launcher_icons: ^0.10.0
 
+flutter_icons:
+  image_path: "assets/icon/icon.jpg"
+  adaptive_icon_foreground: "assets/icon/icon_foreground.png"
+  android: true
+  ios: true
+  image_path_ios: "assets/icon/icon.jpg"
+  adaptive_icon_background: "#213445"
+  remove_alpha_ios: true
 
 flutter:
   uses-material-design: true
@@ -62,6 +71,7 @@ flutter:
   assets:
     - assets/gif/
     - assets/images/
+    - assets/icon/
 
   fonts:
     - family: Roboto
