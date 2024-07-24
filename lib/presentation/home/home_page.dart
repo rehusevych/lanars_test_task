@@ -16,6 +16,7 @@ import 'package:lanars_test_task/presentation/home/widgets/post_item.dart';
 import 'package:lanars_test_task/presentation/widgets/appbar/appbar.dart';
 import 'package:lanars_test_task/presentation/widgets/background/page_background.dart';
 import 'package:lanars_test_task/presentation/widgets/drawer/drawer.dart';
+import 'package:lanars_test_task/presentation/widgets/empty/empty_page.dart';
 import 'package:lanars_test_task/presentation/widgets/loading/app_spin_kit.dart';
 import 'package:lanars_test_task/presentation/widgets/search_delegate/search_delegate.dart';
 
@@ -97,6 +98,7 @@ class _HomePageState extends State<HomePage> {
                           loading: (_, __) => const SliverToBoxAdapter(
                             child: AppSpinKit(),
                           ),
+                          empty: (_, __) => _buildEmpty(context),
                           loaded: (data, page) {
                             return SliverList(
                               delegate: SliverChildListDelegate(
@@ -222,6 +224,25 @@ class _HomePageState extends State<HomePage> {
                 ),
         ],
       ),
+    );
+  }
+
+  Widget _buildEmpty(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding:
+            EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.23),
+        child: EmptyPage(
+          icon: const Icon(
+            Icons.post_add,
+            size: 48,
+          ),
+          title: context.s.noPosts,
+          info: context.s.thereAreCurrentlyNoPosts,
+        ),
+      ),
+
+      // ),
     );
   }
 

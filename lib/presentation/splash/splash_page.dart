@@ -13,7 +13,7 @@ import 'package:lanars_test_task/presentation/router/router.gr.dart';
 import 'package:lanars_test_task/presentation/widgets/animations/shake_animation.dart';
 import 'package:lanars_test_task/presentation/widgets/background/page_background.dart';
 
-const double _logoSize = 300;
+const double _logoSize = 300.0;
 
 class SplashPage extends StatelessWidget {
   const SplashPage({Key? key}) : super(key: key);

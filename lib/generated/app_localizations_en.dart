@@ -35,6 +35,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profile => 'Profile';
 
   @override
+  String get noPosts => 'No posts';
+
+  @override
+  String get thereAreCurrentlyNoPosts => 'There are currently no posts available';
+
+  @override
   String get emailIsRequired => 'Email is required';
 
   @override

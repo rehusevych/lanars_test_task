@@ -16,7 +16,7 @@ class PostsServiceRemote {
     onError(Object error, StackTrace stack) => responseFailure(
           error,
           stack,
-          reason: 'while performing request to receive favorite stories',
+          reason: 'while performing request to receive posts',
         );
     return TaskEither.tryCatch(() => _getPosts(page), onError);
   }

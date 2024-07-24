@@ -9,6 +9,8 @@
   "logout":"Log out",
   "listPage":"List page",
   "profile":"Profile",
+  "noPosts":"No posts",
+  "thereAreCurrentlyNoPosts":"There are currently no posts available",
   "emailIsRequired":"Email is required",
   "emailIsIncorrect":"Email is incorrect",
   "emailMustBeBetween":"Email must be between 6 and 30 characters",

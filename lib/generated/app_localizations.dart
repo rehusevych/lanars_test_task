@@ -151,6 +151,18 @@ abstract class AppLocalizations {
   /// **'Profile'**
   String get profile;
 
+  /// No description provided for @noPosts.
+  ///
+  /// In en, this message translates to:
+  /// **'No posts'**
+  String get noPosts;
+
+  /// No description provided for @thereAreCurrentlyNoPosts.
+  ///
+  /// In en, this message translates to:
+  /// **'There are currently no posts available'**
+  String get thereAreCurrentlyNoPosts;
+
   /// No description provided for @emailIsRequired.
   ///
   /// In en, this message translates to:
