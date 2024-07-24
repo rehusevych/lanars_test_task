@@ -20,7 +20,7 @@ class _AuthenticatedWrapperPageState extends State<AuthenticatedWrapperPage> {
         BlocProvider(
           create: (c) => PostsCubit(
             repository: c.read(),
-          )..initial(),
+          )..getData(),
         ),
         BlocProvider(
           create: (c) => UserCubit(

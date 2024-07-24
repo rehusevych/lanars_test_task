@@ -19,7 +19,7 @@ class PaginationData<T> with _$PaginationData<T> {
     String field,
   ) {
     return PaginationData(
-      embedded: EmbeddedListData.fromJson(json['photos'], fromJsonT, field),
+      embedded: EmbeddedListData.fromJson(json, fromJsonT, field),
       page: PageData.fromJson(json),
     );
   }

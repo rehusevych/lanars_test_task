@@ -172,7 +172,7 @@ class RefreshInterceptor extends Interceptor with ChangeNotifier {
     final code = maybeResponseCode(err);
     if (code == 401 || code == 402) {
       try {
-        final refreshedToken = _apiKey;
+        const refreshedToken = _apiKey;
 
         //update token based on the new refresh token
         final options = err.requestOptions.copyWith(

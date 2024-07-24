@@ -21,46 +21,43 @@ class PostsCubit extends Cubit<PostsState> with SubscriptionCubit<PostsState> {
           const _Loading(),
         );
 
-  void initial({
+  void getData({
     bool forceReload = false,
   }) {
     final page = forceReload
         ? PageData(page: state.page.page + 1)
         : const PageData(page: 1);
-    subscription = _repository
-        .watch()
-        .map(
-          (event) => event.match(
-            (f) => _Failed(
-              data: state.data,
-              page: page,
-              failure: f,
-            ),
-            (r) {
-              final List<PostsData> posts = List.from([...r]);
-              posts.sort((a, b) {
-                return a.photographer
-                    .toLowerCase()
-                    .compareTo(b.photographer.toLowerCase());
-              });
-              final result = valuesByPhotographerName(posts);
-              return result.keys.isEmpty
-                  ? _Empty(data: state.data, page: page)
-                  : _Loaded(data: result, page: page);
-            },
-          ),
-        )
-        .listen(emit);
 
     _repository
         .getData(
           page,
-          forceRemote: true,
+          forceRemote: false,
         )
-        .run();
+        .match(
+          (f) => _Failed(
+            data: state.data,
+            page: page,
+            failure: f,
+          ),
+          (r) {
+            final List<PostsData> posts = List.from([...r.embedded.items]);
+            posts.sort((a, b) {
+              return a.photographer
+                  .toLowerCase()
+                  .compareTo(b.photographer.toLowerCase());
+            });
+            final sortedPosts = _valuesByPhotographerName(posts);
+            return sortedPosts.keys.isEmpty
+                ? _Empty(data: state.data, page: page)
+                : _Loaded(data: sortedPosts, page: page);
+          },
+        )
+        .run()
+        .then(emit);
   }
 
-  Map<String, List<PostsData>> valuesByPhotographerName(List<PostsData> posts) {
+  Map<String, List<PostsData>> _valuesByPhotographerName(
+      List<PostsData> posts) {
     Map<String, List<PostsData>> result = {};
     for (final post in posts) {
       final firstLetter = post.photographer[0].toUpperCase();

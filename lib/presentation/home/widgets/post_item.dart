@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lanars_test_task/presentation/core/colors.dart';
 import 'package:lanars_test_task/presentation/core/constants/dimensions.dart';
 import 'package:lanars_test_task/presentation/core/theme/theme.dart';
+import 'package:lanars_test_task/presentation/home/widgets/photo_item.dart';
 import 'package:lanars_test_task/presentation/widgets/cards/base_card.dart';
 
 class PostItem extends StatelessWidget {
@@ -41,19 +42,7 @@ class PostItem extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  height: 56.h,
-                  width: 56.w,
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(appBorderRadius),
-                    ),
-                    child: Image.network(
-                      image,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
+                PhotoItem(url: image),
                 SizedBox(width: doubleLightSpace.w),
                 Expanded(
                   child: Column(

@@ -133,6 +133,12 @@ abstract class AppLocalizations {
   /// **'Log in'**
   String get login;
 
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out'**
+  String get logout;
+
   /// No description provided for @listPage.
   ///
   /// In en, this message translates to:

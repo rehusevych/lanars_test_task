@@ -14,4 +14,6 @@ class UserServiceLocal extends BoxStore<String, UserData> {
   TaskEither<Failure, UserData> saveData0(UserData user) => saveData('', user);
 
   Stream<Either<Failure, UserData>> watch0() => watch('');
+
+  bool hasUserData() => box.isNotEmpty;
 }

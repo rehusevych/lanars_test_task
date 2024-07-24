@@ -7,6 +7,6 @@ extension TaskEitherExtension<L, R> on TaskEither<L, R?> {
   TaskEither<TL, R> mapLeft<TL>(TL Function(L l) orElse) => TaskEither(
         () async => (await run()).match(
             (l) => TaskEither<TL, R>.left(orElse(l)).run(),
-            (r) => TaskEither<TL, R>.right(r!).run()),
+            (r) => TaskEither<TL, R>.right(r as R).run()),
       );
 }

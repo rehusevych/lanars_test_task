@@ -63,6 +63,7 @@ class _AppTextFieldState extends State<AppTextField> {
       style: context.appTextTheme.h5.paint(AppColors.textFieldTextColor),
       decoration: InputDecoration(
         errorMaxLines: 2,
+
         contentPadding: EdgeInsets.all(doubleLightSpace.sp),
         labelText: widget.labelText,
         hintText: widget.hintText,

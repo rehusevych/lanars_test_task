@@ -22,12 +22,16 @@ class $AssetsGifGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/image_placeholder.jpg
+  AssetGenImage get imagePlaceholder =>
+      const AssetGenImage('assets/images/image_placeholder.jpg');
+
   /// File path: assets/images/placeholder.jpg
   AssetGenImage get placeholder =>
       const AssetGenImage('assets/images/placeholder.jpg');
 
   /// List of all assets
-  List<AssetGenImage> get values => [placeholder];
+  List<AssetGenImage> get values => [imagePlaceholder, placeholder];
 }
 
 class Assets {

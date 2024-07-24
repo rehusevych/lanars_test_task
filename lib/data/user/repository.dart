@@ -9,7 +9,6 @@ import 'package:lanars_test_task/data/user/service/local.dart';
 import 'package:lanars_test_task/data/user/service/remote.dart';
 
 class UserRepository {
-  final AppAuthTokenStore _store;
   final UserServiceRemote _remote;
   final UserServiceLocal _local;
 
@@ -17,13 +16,12 @@ class UserRepository {
     required AppAuthTokenStore tokenStore,
     required UserServiceRemote remote,
     required UserServiceLocal local,
-  })  : _store = tokenStore,
-        _remote = remote,
+  })  : _remote = remote,
         _local = local;
 
   Future<void> logout() async {
-    if (await _store.hasToken()) {
-      _store.clear();
+    if (_local.hasUserData()) {
+      _local.clear();
     }
   }
 

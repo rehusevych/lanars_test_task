@@ -140,7 +140,7 @@ class CollapsedHeaderDelegate extends SliverPersistentHeaderDelegate {
                         children: [
                           if (leadingBuilder != null) ...[
                             leadingBuilder!(context, offset),
-                            Spacer(),
+                            const Spacer(),
                           ],
                           Text(
                             title,

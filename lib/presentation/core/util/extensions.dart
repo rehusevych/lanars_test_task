@@ -1,4 +1,4 @@
-extension ExtendsionsOnMapDynamicDynamic<K, V> on Map<K, V> {
+extension ExtensionsOnMapDynamicDynamic<K, V> on Map<K, V> {
   /// Order by keys
   Map<K, V> orderByKeys({required int Function(K a, K b) compareTo}) {
     return Map.fromEntries(

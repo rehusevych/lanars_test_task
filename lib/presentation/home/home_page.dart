@@ -8,12 +8,15 @@ import 'package:lanars_test_task/bloc/user/cubit.dart';
 import 'package:lanars_test_task/data/posts/model/posts_data.dart';
 import 'package:lanars_test_task/extensions/l10n.dart';
 import 'package:lanars_test_task/presentation/core/constants/dimensions.dart';
+import 'package:lanars_test_task/presentation/core/constants/duration.dart';
 import 'package:lanars_test_task/presentation/core/theme/theme.dart';
 import 'package:lanars_test_task/presentation/core/util/util.dart';
+import 'package:lanars_test_task/presentation/home/utils/sort_order.dart';
 import 'package:lanars_test_task/presentation/home/widgets/post_item.dart';
 import 'package:lanars_test_task/presentation/widgets/appbar/appbar.dart';
 import 'package:lanars_test_task/presentation/widgets/background/page_background.dart';
 import 'package:lanars_test_task/presentation/widgets/drawer/drawer.dart';
+import 'package:lanars_test_task/presentation/widgets/loading/app_spin_kit.dart';
 import 'package:lanars_test_task/presentation/widgets/search_delegate/search_delegate.dart';
 
 const double _iconSize = 30.0;
@@ -27,7 +30,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
+  SortOrder _sortOrder = SortOrder.descending;
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +48,10 @@ class _HomePageState extends State<HomePage> {
           return PageBackground(
             drawer: buildDrawer(
               context,
-              data: state.maybeWhen(orElse: () => null, loaded: (user) => user),
+              data: state.maybeWhen(
+                orElse: () => null,
+                loaded: (user) => user,
+              ),
             ),
             child: PrimaryScrollController(
               controller: _scrollController,
@@ -58,38 +71,66 @@ class _HomePageState extends State<HomePage> {
                         );
                       },
                     ),
+                    CupertinoSliverRefreshControl(
+                      onRefresh: () => _onRefresh(context),
+                    ),
                     SliverToBoxAdapter(
-                      child: SizedBox(height: doubleLightSpace.h),
+                      child: SizedBox(height: lightSpace.h),
+                    ),
+                    SliverToBoxAdapter(
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: IconButton(
+                          icon: Icon(
+                            _sortOrder == SortOrder.ascending
+                                ? CupertinoIcons.sort_up
+                                : CupertinoIcons.sort_down,
+                          ),
+                          onPressed: () => _onChangeSort(context),
+                        ),
+                      ),
                     ),
                     BlocBuilder<PostsCubit, PostsState>(
                       builder: (context, state) {
                         return state.maybeWhen(
                           orElse: () => const SliverToBoxAdapter(),
-                          loaded: (data, page) => SliverList(
-                            delegate: SliverChildListDelegate(
-                              List.generate(
-                                data.keys.length,
-                                (index) {
-                                  final key = data.keys.elementAt(index);
-                                  return Column(
-                                    children: [
-                                      ...data[key]!.mapIndexed(
-                                        (index, post) => _buildPostItem(
-                                          context,
-                                          post,
-                                          key,
-                                          index,
-                                        ),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              ),
-                            ),
+                          loading: (_, __) => const SliverToBoxAdapter(
+                            child: AppSpinKit(),
                           ),
+                          loaded: (data, page) {
+                            return SliverList(
+                              delegate: SliverChildListDelegate(
+                                List.generate(
+                                  data.keys.length,
+                                  growable: false,
+                                  (index) {
+                                    final key = _sortOrder ==
+                                            SortOrder.ascending
+                                        ? data.keys.reversed.elementAt(index)
+                                        : data.keys.elementAt(index);
+                                    return Column(
+                                      children: [
+                                        ...data[key]!.mapIndexed(
+                                          (index, post) => _buildPostItem(
+                                            context,
+                                            post,
+                                            key,
+                                            index,
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                ),
+                              ),
+                            );
+                          },
                         );
                       },
                     ),
+                    SliverToBoxAdapter(
+                      child: SizedBox(height: (doubleLargeSpace * 2).h),
+                    )
                   ],
                 ),
               ),
@@ -182,5 +223,23 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
+  }
+
+  void _onChangeSort(BuildContext context) {
+    setState(() {
+      switch (_sortOrder) {
+        case SortOrder.ascending:
+          _sortOrder = SortOrder.descending;
+          break;
+        case SortOrder.descending:
+          _sortOrder = SortOrder.ascending;
+          break;
+      }
+    });
+  }
+
+  Future<void> _onRefresh(BuildContext context) {
+    context.read<PostsCubit>().getData(forceReload: true);
+    return Future.delayed(refreshDuration);
   }
 }

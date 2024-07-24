@@ -31,7 +31,7 @@ class AuthPage extends StatelessWidget {
 }
 
 class _AuthPageWithBloc extends StatefulWidget {
-  const _AuthPageWithBloc({super.key});
+  const _AuthPageWithBloc();
 
   @override
   State<_AuthPageWithBloc> createState() => _AuthPageWithBlocState();
@@ -41,7 +41,8 @@ class _AuthPageWithBlocState extends State<_AuthPageWithBloc> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  final _formKey = GlobalKey<FormState>();
+  final _emailFormKey = GlobalKey<FormState>();
+  final _passwordFormKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
@@ -66,14 +67,7 @@ class _AuthPageWithBlocState extends State<_AuthPageWithBloc> {
                   const Spacer(flex: 2),
                   _buildTitle(context, context.s.signIn),
                   const Spacer(),
-                  Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                        ..._buildTextFields(context, state),
-                      ],
-                    ),
-                  ),
+                  ..._buildTextFields(context, state),
                   const Spacer(),
                   state.maybeWhen(
                     orElse: () => _buildLoginButton(context),
@@ -101,30 +95,36 @@ class _AuthPageWithBlocState extends State<_AuthPageWithBloc> {
 
   List<Widget> _buildTextFields(BuildContext context, AuthState state) {
     return [
-      AppTextField(
-        labelText: context.s.email,
-        hintText: context.s.enterYouEmail,
-        controller: _emailController,
-        validate: _validateForm,
-        validator: (text) => validateEmail(context, text),
-        isEnabled: state.maybeWhen(
-          orElse: () => true,
-          loading: () => false,
+      Form(
+        key: _emailFormKey,
+        child: AppTextField(
+          labelText: context.s.email,
+          hintText: context.s.enterYouEmail,
+          controller: _emailController,
+          validate: _validateForm,
+          validator: (text) => validateEmail(context, text),
+          isEnabled: state.maybeWhen(
+            orElse: () => true,
+            loading: () => false,
+          ),
         ),
       ),
       SizedBox(
         height: (largeSpace * 3).h,
       ),
-      AppTextField(
-        labelText: context.s.password,
-        hintText: context.s.enterYouPassword,
-        controller: _passwordController,
-        isPassword: true,
-        validate: _validateForm,
-        validator: (text) => validatePassword(context, text),
-        isEnabled: state.maybeWhen(
-          orElse: () => true,
-          loading: () => false,
+      Form(
+        key: _passwordFormKey,
+        child: AppTextField(
+          labelText: context.s.password,
+          hintText: context.s.enterYouPassword,
+          controller: _passwordController,
+          isPassword: true,
+          validate: _validateForm,
+          validator: (text) => validatePassword(context, text),
+          isEnabled: state.maybeWhen(
+            orElse: () => true,
+            loading: () => false,
+          ),
         ),
       ),
     ];
@@ -137,7 +137,8 @@ class _AuthPageWithBlocState extends State<_AuthPageWithBloc> {
     return AppButton(
       text: context.s.login,
       onPressed: () {
-        if (_formKey.currentState!.validate()) {
+        if (_emailFormKey.currentState!.validate() &&
+            _passwordFormKey.currentState!.validate()) {
           context.read<AuthCubit>().login(
                 email: _emailController.text,
                 password: _passwordController.text,
@@ -178,9 +179,11 @@ class _AuthPageWithBlocState extends State<_AuthPageWithBloc> {
   }
 
   void _validateForm() {
-    if (_emailController.text.isNotEmpty &&
-        _passwordController.text.isNotEmpty) {
-      _formKey.currentState!.validate();
+    if (_emailController.text.isNotEmpty) {
+      _emailFormKey.currentState?.validate();
+    }
+    if (_passwordController.text.isNotEmpty) {
+      _passwordFormKey.currentState?.validate();
     }
   }
 }
