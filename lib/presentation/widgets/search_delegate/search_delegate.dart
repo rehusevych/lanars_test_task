@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lanars_test_task/data/posts/model/posts_data.dart';
+import 'package:lanars_test_task/extensions/l10n.dart';
 import 'package:lanars_test_task/presentation/core/colors.dart';
 import 'package:lanars_test_task/presentation/core/constants/dimensions.dart';
+import 'package:lanars_test_task/presentation/core/theme/theme.dart';
 import 'package:lanars_test_task/presentation/core/util/util.dart';
 import 'package:lanars_test_task/presentation/home/widgets/post_item.dart';
 
@@ -52,22 +54,25 @@ class CustomSearchDelegate extends SearchDelegate<String> {
 
     return Padding(
       padding: EdgeInsets.only(top: doubleLightSpace.h),
-      child: ListView.separated(
-        itemCount: searchResults.length,
-        itemBuilder: (context, index) {
-          return PostItem(
-            title: searchResults[index].photographer,
-            subtitle: searchResults[index].alt,
-            image: searchResults[index].src.small,
-            padding: EdgeInsets.symmetric(horizontal: doubleLightSpace.w),
-            onPressed: () => openPhotoFullSize(
-              context,
-              path: searchResults[index].src.original,
-            ),
-          );
-        },
-        separatorBuilder: (context, index) => SizedBox(height: lightSpace.h),
-      ),
+      child: searchResults.isNotEmpty
+          ? ListView.separated(
+              itemCount: searchResults.length,
+              itemBuilder: (context, index) {
+                return PostItem(
+                  title: searchResults[index].photographer,
+                  subtitle: searchResults[index].alt,
+                  image: searchResults[index].src.small,
+                  padding: EdgeInsets.symmetric(horizontal: doubleLightSpace.w),
+                  onPressed: () => openPhotoFullSize(
+                    context,
+                    path: searchResults[index].src.original,
+                  ),
+                );
+              },
+              separatorBuilder: (context, index) =>
+                  SizedBox(height: lightSpace.h),
+            )
+          : _buildEmptyResults(context),
     );
   }
 
@@ -86,26 +91,39 @@ class CustomSearchDelegate extends SearchDelegate<String> {
           height: dividerHeight.h,
         ),
         SizedBox(height: doubleLightSpace.h),
-        Expanded(
-          child: ListView.separated(
-            itemCount: suggestionList.length,
-            itemBuilder: (context, index) {
-              return PostItem(
-                title: suggestionList[index].photographer,
-                subtitle: suggestionList[index].alt,
-                image: suggestionList[index].src.small,
-                padding: EdgeInsets.symmetric(horizontal: doubleLightSpace.w),
-                onPressed: () => openPhotoFullSize(
-                  context,
-                  path: suggestionList[index].src.original,
+        suggestionList.isNotEmpty
+            ? Expanded(
+                child: ListView.separated(
+                  itemCount: suggestionList.length,
+                  itemBuilder: (context, index) {
+                    return PostItem(
+                      title: suggestionList[index].photographer,
+                      subtitle: suggestionList[index].alt,
+                      image: suggestionList[index].src.small,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: doubleLightSpace.w),
+                      onPressed: () => openPhotoFullSize(
+                        context,
+                        path: suggestionList[index].src.original,
+                      ),
+                    );
+                  },
+                  separatorBuilder: (context, index) =>
+                      SizedBox(height: lightSpace.h),
                 ),
-              );
-            },
-            separatorBuilder: (context, index) =>
-                SizedBox(height: lightSpace.h),
-          ),
-        ),
+              )
+            : _buildEmptyResults(context),
       ],
+    );
+  }
+
+  Widget _buildEmptyResults(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(top: (doubleMediumSpace * 3).h),
+      child: Text(
+        context.s.noItemFound,
+        style: context.appTextTheme.h3.paint(AppColors.secondary),
+      ),
     );
   }
 }

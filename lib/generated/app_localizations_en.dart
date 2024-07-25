@@ -41,6 +41,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noPosts => 'No posts';
 
   @override
+  String get noItemFound => 'No item found';
+
+  @override
   String get areYouSureYouWantToLogout => 'Are you sure you want to logout?';
 
   @override

@@ -11,6 +11,7 @@
   "profile":"Profile",
   "cancel":"Cancel",
   "noPosts":"No posts",
+  "noItemFound":"No item found",
   "areYouSureYouWantToLogout":"Are you sure you want to logout?",
   "thereAreCurrentlyNoPosts":"There are currently no posts available",
   "emailIsRequired":"Email is required",

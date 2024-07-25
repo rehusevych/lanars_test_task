@@ -163,6 +163,12 @@ abstract class AppLocalizations {
   /// **'No posts'**
   String get noPosts;
 
+  /// No description provided for @noItemFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No item found'**
+  String get noItemFound;
+
   /// No description provided for @areYouSureYouWantToLogout.
   ///
   /// In en, this message translates to:
