@@ -2,7 +2,7 @@
 
 Hi, this is a test challenge project from Lanars company.
 
-in this project, all tasks marked [x] were done, as well as some marked [xx]:
+In this project, all tasks marked [x] were done, as well as some marked [xx]:
 
 - [xx] User stays logged in until logout action
 - [xx] There is a user avatar
