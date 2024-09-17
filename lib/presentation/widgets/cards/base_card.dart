@@ -9,7 +9,7 @@ class BaseCard extends StatelessWidget {
   final VoidCallback? onPressed;
 
   const BaseCard({
-    Key? key,
+    super.key,
     this.child,
     this.backgroundColor,
     this.borderRadius = const BorderRadius.all(
@@ -17,7 +17,7 @@ class BaseCard extends StatelessWidget {
     ),
     this.shape,
     this.onPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

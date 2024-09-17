@@ -9,6 +9,7 @@ class ConnectivityProvider {
 
   Future<bool> checkConnection() async {
     final connectivityResult = await _connectivity.checkConnectivity();
+    // ignore: unrelated_type_equality_checks
     return connectivityResult != ConnectivityResult.none;
   }
 }

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,6 +10,7 @@ import 'package:lanars_test_task/presentation/core/colors.dart';
 import 'package:lanars_test_task/presentation/core/constants/dimensions.dart';
 import 'package:lanars_test_task/presentation/core/theme/theme.dart';
 import 'package:lanars_test_task/presentation/core/util/util.dart';
+import 'package:lanars_test_task/presentation/router/router.gr.dart';
 import 'package:lanars_test_task/presentation/widgets/cards/base_card.dart';
 import 'package:lanars_test_task/presentation/widgets/drawer/widgets/logout_dialog.dart';
 
@@ -32,6 +34,8 @@ Drawer buildDrawer(
             SizedBox(height: doubleMediumSpace.h),
             _buildUserInfo(context, data),
             const Spacer(),
+            _buildRealmDatabaseButton(context),
+            SizedBox(height: doubleLargeSpace.h),
             _buildLogoutButton(context),
           ],
         ),
@@ -50,8 +54,7 @@ Widget _buildTitle(BuildContext context) {
 Widget _buildUserInfo(BuildContext context, UserData? data) {
   return BaseCard(
     backgroundColor: Colors.transparent,
-    onPressed: () =>
-        openPhotoFullSize(context, path: data?.picture?.large ?? ''),
+    onPressed: () => openPhotoFullSize(context, path: data?.picture?.large ?? ''),
     child: Row(
       children: [
         _buildUserAvatar(data?.picture?.medium ?? ""),
@@ -97,6 +100,29 @@ Widget _buildUserAvatar(String path) {
       fit: BoxFit.cover,
       placeholder: (context, url) => Assets.images.placeholder.image(),
       errorWidget: (context, url, error) => Assets.images.placeholder.image(),
+    ),
+  );
+}
+
+Widget _buildRealmDatabaseButton(BuildContext context) {
+  return IconButton(
+    onPressed: () {
+      Navigator.of(context).pop();
+      context.router.push(const PostsRealmRoute());
+    },
+    icon: Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(
+          Icons.data_object_sharp,
+          size: _iconSize.sp,
+        ),
+        SizedBox(width: lightSpace.w),
+        Text(
+          "Realm Database",
+          style: context.appTextTheme.h6.paint(AppColors.surface),
+        ),
+      ],
     ),
   );
 }

@@ -9,12 +9,12 @@ class EmptyPage extends StatelessWidget {
   final Widget? footer;
 
   const EmptyPage({
-    Key? key,
+    super.key,
     required this.icon,
     this.title,
     this.info,
     this.footer,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

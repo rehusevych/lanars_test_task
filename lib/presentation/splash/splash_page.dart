@@ -15,8 +15,9 @@ import 'package:lanars_test_task/presentation/widgets/background/page_background
 
 const double _logoSize = 300.0;
 
+@RoutePage()
 class SplashPage extends StatelessWidget {
-  const SplashPage({Key? key}) : super(key: key);
+  const SplashPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +80,7 @@ class SplashPage extends StatelessWidget {
       ),
       homeWithUser: (user) => Future.delayed(
         const Duration(seconds: 2),
-        () => context.replaceRoute(const AuthenticatedWrapperRouter()),
+        () => context.replaceRoute(const AuthenticatedWrapperRoute()),
       ),
     );
   }

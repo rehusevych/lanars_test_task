@@ -55,11 +55,9 @@ class AppThemeData {
       errorContainer: Color(0xFFFFDAD6),
       onErrorContainer: Color(0xFF410002),
       outline: Color(0xFF73777F),
-      background: Color(0xFFFDFCFF),
-      onBackground: Color(0xFF1A1C1E),
       surface: Color(0xFFFAF9FC),
       onSurface: Color(0xFF1A1C1E),
-      surfaceVariant: Color(0xFFDFE2EB),
+      surfaceContainerHighest: Color(0xFFDFE2EB),
       onSurfaceVariant: Color(0xFF43474E),
       inverseSurface: Color(0xFF2F3033),
       onInverseSurface: Color(0xFFF1F0F4),
@@ -185,6 +183,6 @@ extension AppThemeDataExtension on AppThemeData {
           selectionColor: Colors.blue.withOpacity(0.5),
           selectionHandleColor: Colors.blue.withOpacity(0.5),
         ),
-        colorScheme: colorScheme.copyWith(background: backgroundColor),
+        colorScheme: colorScheme.copyWith(surface: backgroundColor),
       );
 }

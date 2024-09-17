@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:dartx/dartx.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lanars_test_task/bloc/posts/cubit.dart';
 import 'package:lanars_test_task/bloc/user/cubit.dart';
 import 'package:lanars_test_task/data/posts/model/posts_data.dart';
+import 'package:lanars_test_task/data/posts/model/posts_realm/posts_realm_model.dart';
 import 'package:lanars_test_task/extensions/l10n.dart';
 import 'package:lanars_test_task/presentation/core/constants/dimensions.dart';
 import 'package:lanars_test_task/presentation/core/constants/duration.dart';
@@ -23,6 +25,7 @@ import 'package:lanars_test_task/presentation/widgets/search_delegate/search_del
 const double _iconSize = 30.0;
 const double _scrollBarThickness = 5.0;
 
+@RoutePage()
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -106,8 +109,7 @@ class _HomePageState extends State<HomePage> {
                                   data.keys.length,
                                   growable: false,
                                   (index) {
-                                    final key = _sortOrder ==
-                                            SortOrder.ascending
+                                    final key = _sortOrder == SortOrder.ascending
                                         ? data.keys.reversed.elementAt(index)
                                         : data.keys.elementAt(index);
                                     return Column(
@@ -179,9 +181,7 @@ class _HomePageState extends State<HomePage> {
             for (final posts in state.data.values) {
               postsList.addAll(posts);
             }
-            showSearch(
-                context: context,
-                delegate: CustomSearchDelegate(posts: postsList));
+            showSearch(context: context, delegate: CustomSearchDelegate(posts: postsList));
           },
         ),
       ),
@@ -194,35 +194,56 @@ class _HomePageState extends State<HomePage> {
     String letter,
     int index,
   ) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-          vertical: halfLightSpace, horizontal: largeSpace),
-      child: Stack(
-        children: [
-          PostItem(
-            title: post.photographer,
-            subtitle: post.alt,
-            image: post.src.small,
-            onPressed: () => openPhotoFullSize(
-              context,
-              path: post.src.large,
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: halfLightSpace,
+          horizontal: largeSpace,
+        ),
+        child: Stack(
+          children: [
+            PostItem(
+              title: post.photographer,
+              subtitle: post.alt,
+              image: post.src.small,
+              onPressed: () {
+                context
+                    .read<PostsCubit>()
+                    .addPostToRealm(
+                      PostsRealmModel(
+                        post.id.toString(),
+                        post.photographer,
+                        post.src.original,
+                      ),
+                      onFailed: () => showErrorSnackBar(context, "Unexpected error"),
+                    )
+                    .then(
+                  (isSuccess) {
+                    if (isSuccess) {
+                      showSuccessSnackBar(context, "Post added to Realm");
+                      openPhotoFullSize(
+                        context,
+                        path: post.src.large,
+                      );
+                    }
+                  },
+                );
+              },
             ),
-          ),
-          index == 0
-              ? Positioned(
-                  left: mediumSpace.w,
-                  top: -halfLightSpace.h,
-                  child: Text(
-                    letter,
-                    style: context.appTextTheme.h5,
+            index == 0
+                ? Positioned(
+                    left: mediumSpace.w,
+                    top: -halfLightSpace.h,
+                    child: Text(
+                      letter,
+                      style: context.appTextTheme.h5,
+                    ),
+                  )
+                : SizedBox(
+                    width: calculateTextWidth(context.appTextTheme.h5, text: letter).w,
                   ),
-                )
-              : SizedBox(
-                  width:
-                      calculateTextWidth(context.appTextTheme.h5, text: letter)
-                          .w,
-                ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -230,8 +251,7 @@ class _HomePageState extends State<HomePage> {
   Widget _buildEmpty(BuildContext context) {
     return SliverToBoxAdapter(
       child: Padding(
-        padding:
-            EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.23),
+        padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.23),
         child: EmptyPage(
           icon: const Icon(
             Icons.post_add,

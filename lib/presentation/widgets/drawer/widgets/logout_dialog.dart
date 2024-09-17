@@ -22,7 +22,7 @@ Future<void> showLogoutDialog(
       ),
       actions: [
         TextButton(
-          onPressed: () => context.router.pop(),
+          onPressed: () => context.router.maybePop(),
           child: Text(
             context.s.cancel,
             style: context.appTextTheme.h6.paint(AppColors.secondary).copyWith(

@@ -1,28 +1,27 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:lanars_test_task/presentation/auth/auth_page.dart';
-import 'package:lanars_test_task/presentation/home/home_page.dart';
-import 'package:lanars_test_task/presentation/router/wrapper/authenticated_wrapper.dart';
-import 'package:lanars_test_task/presentation/splash/splash_page.dart';
+import 'package:lanars_test_task/presentation/router/router.gr.dart';
 
-const int _fadeInDurationInMilliseconds = 500;
-
-@AdaptiveAutoRouter(
-  replaceInRouteName: 'Page,Route',
-  routes: <AutoRoute>[
-    AutoRoute(page: SplashPage),
-    AutoRoute(page: AuthPage),
-    CustomRoute(
-      page: AuthenticatedWrapperPage,
-      name: 'AuthenticatedWrapperRouter',
-      durationInMilliseconds: _fadeInDurationInMilliseconds,
-      transitionsBuilder: TransitionsBuilders.fadeIn,
-      children: [
+@AutoRouterConfig(replaceInRouteName: 'Page,Route')
+class AppRouter extends RootStackRouter {
+  @override
+  List<AutoRoute> get routes => [
         AutoRoute(
-          page: HomePage,
+          page: SplashRoute.page,
           initial: true,
+          path: '/',
         ),
-      ],
-    ),
-  ],
-)
-class $AppRouter {}
+        AutoRoute(page: AuthRoute.page),
+        AutoRoute(
+          page: AuthenticatedWrapperRoute.page,
+          children: [
+            AutoRoute(
+              page: HomeRoute.page,
+              initial: true,
+            ),
+            AutoRoute(
+              page: PostsRealmRoute.page,
+            ),
+          ],
+        ),
+      ];
+}

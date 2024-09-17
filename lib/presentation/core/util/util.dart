@@ -190,8 +190,7 @@ void openPhotoFullSize(
   BuildContext context, {
   required String path,
 }) {
-  final provider =
-      Uri.parse(path).isAbsolute ? NetworkImage(path) : FileImage(File(path));
+  final provider = Uri.parse(path).isAbsolute ? NetworkImage(path) : FileImage(File(path));
   final imageProvider = provider as ImageProvider<Object>?;
 
   showDialog(
@@ -228,7 +227,7 @@ Widget _buildCloseButton(BuildContext context) {
           size: _iconSize,
         ),
         onPressed: () {
-          context.router.pop();
+          context.router.maybePop();
         },
       ),
     ),

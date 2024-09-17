@@ -4,7 +4,6 @@ import 'package:lanars_test_task/presentation/core/constants/hive_type_id.dart';
 
 part 'picture_data.g.dart';
 part 'picture_data.freezed.dart';
-part 'picture_data.hive.dart';
 
 @freezed
 class PictureData with _$PictureData {

@@ -2,7 +2,7 @@ import 'app_localizations.dart';
 
 /// The translations for English (`en`).
 class AppLocalizationsEn extends AppLocalizations {
-  AppLocalizationsEn([String locale = 'en']) : super(locale);
+  AppLocalizationsEn([super.locale = 'en']);
 
   @override
   String get lanars => 'Lanars';
@@ -62,7 +62,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get passwordIsRequired => 'Password is required';
 
   @override
-  String get passwordMustIncludeUppercase => 'Password must include uppercase, lowercase letters and a digit';
+  String get passwordMustIncludeUppercase =>
+      'Password must include uppercase, lowercase letters and a digit';
 
   @override
   String get passwordMustBeBetween => 'Password must be between 6 and 10 characters';

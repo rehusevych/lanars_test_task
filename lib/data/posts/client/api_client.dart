@@ -20,7 +20,7 @@ abstract class PostsApiClient {
   );
 }
 
-PaginationData<PostsData> deserializePaginationData<T>(
+PaginationData<PostsData> deserializePaginationDataPostsData<T>(
   Map<String, dynamic> json,
 ) {
   return PaginationData<PostsData>.fromJson(
@@ -30,5 +30,4 @@ PaginationData<PostsData> deserializePaginationData<T>(
   );
 }
 
-Map<String, dynamic>? serializePageData(PageData? pageData) =>
-    pageData?.toQueries();
+Map<String, dynamic>? serializePageData(PageData? pageData) => pageData?.toQueries();

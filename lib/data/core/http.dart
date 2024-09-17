@@ -12,10 +12,9 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 const String baseUrl = "https://api.pexels.com/";
 const String apiVersion = "v1";
 const String authBaseUrl = "https://randomuser.me/api";
-const String _apiKey =
-    "xqfrzIkQxk54Bxu0EIhdi9r9QNlqpEePRohGuv6Cjb4lmYT57SpewpLt";
-const int _connectionTimeout = 15000;
-const int _receiveTimeout = 15000;
+const String _apiKey = "xqfrzIkQxk54Bxu0EIhdi9r9QNlqpEePRohGuv6Cjb4lmYT57SpewpLt";
+const Duration _connectionTimeout = Duration(milliseconds: 15000);
+const Duration _receiveTimeout = Duration(milliseconds: 15000);
 
 Map<String, String> authHeader() => {"Authorization": _apiKey};
 
@@ -149,8 +148,7 @@ class HttpAuthInterceptor extends Interceptor with ChangeNotifier {
     var requestOptions = options;
     try {
       final token = await store.getToken();
-      requestOptions =
-          requestOptions.copyWith(headers: authOptions(token).headers);
+      requestOptions = requestOptions.copyWith(headers: authOptions(token).headers);
     } on MissingTokenException {
       notifyListeners();
     }
@@ -168,7 +166,7 @@ class RefreshInterceptor extends Interceptor with ChangeNotifier {
   });
 
   @override
-  Future<void> onError(DioError err, ErrorInterceptorHandler handler) async {
+  Future<void> onError(DioException err, ErrorInterceptorHandler handler) async {
     final code = maybeResponseCode(err);
     if (code == 401 || code == 402) {
       try {

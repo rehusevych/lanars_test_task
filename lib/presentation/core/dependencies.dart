@@ -5,10 +5,9 @@ class _ProvideDependencies extends StatelessWidget {
   final Widget child;
 
   const _ProvideDependencies({
-    Key? key,
     required this.sharedPreferences,
     required this.child,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

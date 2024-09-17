@@ -20,7 +20,7 @@ import 'package:lanars_test_task/data/user/service/remote.dart';
 import 'package:lanars_test_task/extensions/l10n.dart';
 import 'package:lanars_test_task/generated/app_localizations.dart';
 import 'package:lanars_test_task/presentation/core/theme/theme.dart';
-import 'package:lanars_test_task/presentation/router/router.gr.dart';
+import 'package:lanars_test_task/presentation/router/router.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -29,15 +29,15 @@ part 'dependencies.dart';
 
 const Size _designSize = Size(360, 800);
 
-final appRouter = AppRouter();
+final _appRouter = AppRouter();
 
 class App extends StatelessWidget {
   final SharedPreferences sharedPreferences;
 
   const App({
-    Key? key,
+    super.key,
     required this.sharedPreferences,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -47,23 +47,13 @@ class App extends StatelessWidget {
     ]);
 
     return MaterialApp.router(
+      routerConfig: _appRouter.config(),
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate
       ],
       onGenerateTitle: (context) => context.s.lanars,
-      supportedLocales: const [
-        Locale('en'),
-      ],
-      routeInformationParser: appRouter.defaultRouteParser(
-        includePrefixMatches: true,
-      ),
-      routerDelegate: appRouter.delegate(
-        initialRoutes: [
-          const SplashRoute(),
-        ],
-      ),
       builder: (context, child) {
         ScreenUtil.init(
           context,

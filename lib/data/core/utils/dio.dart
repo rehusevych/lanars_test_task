@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:lanars_test_task/data/core/model/failure/failure.dart';
 
 int? maybeResponseCode(dynamic error, {bool gatherValidation = true}) {
-  if (error is DioError && error.type == DioErrorType.response) {
+  if (error is DioException && error.type == DioExceptionType.badResponse) {
     return error.response?.statusCode;
   }
 
@@ -16,12 +16,12 @@ Failure responseFailure(
   StackTrace? stackTrace, {
   String? reason,
 }) {
-  if (error is DioError) {
-    if (error.type == DioErrorType.other) {
+  if (error is DioException) {
+    if (error.type == DioExceptionType.unknown) {
       if (error.error is SocketException) {
         return const Failure.network();
       }
-    } else if (error.type == DioErrorType.response) {
+    } else if (error.type == DioExceptionType.badResponse) {
       final code = error.response?.statusCode;
       return code == null
           ? Failure.unexpected(error, stackTrace)

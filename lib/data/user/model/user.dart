@@ -7,7 +7,6 @@ import 'package:lanars_test_task/presentation/core/constants/hive_type_id.dart';
 
 part 'user.freezed.dart';
 part 'user.g.dart';
-part 'user.hive.dart';
 
 @freezed
 class UserData with _$UserData {
@@ -22,6 +21,5 @@ class UserData with _$UserData {
     @HiveField(6) PictureData? picture,
   }) = _UserData;
 
-  factory UserData.fromJson(Map<String, dynamic> json) =>
-      _$UserDataFromJson(json);
+  factory UserData.fromJson(Map<String, dynamic> json) => _$UserDataFromJson(json);
 }

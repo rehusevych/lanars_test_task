@@ -19,6 +19,20 @@ class $AssetsGifGen {
   List<AssetGenImage> get values => [logo];
 }
 
+class $AssetsIconGen {
+  const $AssetsIconGen();
+
+  /// File path: assets/icon/icon.jpg
+  AssetGenImage get icon => const AssetGenImage('assets/icon/icon.jpg');
+
+  /// File path: assets/icon/icon_foreground.png
+  AssetGenImage get iconForeground =>
+      const AssetGenImage('assets/icon/icon_foreground.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [icon, iconForeground];
+}
+
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
@@ -38,6 +52,7 @@ class Assets {
   Assets._();
 
   static const $AssetsGifGen gif = $AssetsGifGen();
+  static const $AssetsIconGen icon = $AssetsIconGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 

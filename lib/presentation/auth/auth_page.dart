@@ -16,6 +16,7 @@ import 'package:lanars_test_task/presentation/widgets/text_field/app_text_field.
 
 const double _loadingButtonSize = 20.0;
 
+@RoutePage()
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
 
@@ -71,8 +72,7 @@ class _AuthPageWithBlocState extends State<_AuthPageWithBloc> {
                   const Spacer(),
                   state.maybeWhen(
                     orElse: () => _buildLoginButton(context),
-                    loading: () =>
-                        _buildLoginButton(context, loading: _buildLoading()),
+                    loading: () => _buildLoginButton(context, loading: _buildLoading()),
                   ),
                   const Spacer(flex: 4),
                 ],
@@ -137,8 +137,7 @@ class _AuthPageWithBlocState extends State<_AuthPageWithBloc> {
     return AppButton(
       text: context.s.login,
       onPressed: () {
-        if (_emailFormKey.currentState!.validate() &&
-            _passwordFormKey.currentState!.validate()) {
+        if (_emailFormKey.currentState!.validate() && _passwordFormKey.currentState!.validate()) {
           context.read<AuthCubit>().login(
                 email: _emailController.text,
                 password: _passwordController.text,
@@ -173,7 +172,7 @@ class _AuthPageWithBlocState extends State<_AuthPageWithBloc> {
         context.s.serverError,
       ),
       signInSuccess: (user) => context.replaceRoute(
-        const AuthenticatedWrapperRouter(),
+        const AuthenticatedWrapperRoute(),
       ),
     );
   }

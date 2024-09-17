@@ -23,66 +23,64 @@ class AppButtonTheme {
   ) {
     return ButtonStyle(
       shape: _defaultButtonShape(),
-      textStyle: MaterialStateProperty.all<TextStyle>(
+      textStyle: WidgetStateProperty.all<TextStyle>(
         textStyle.copyWith(
           height: textHeight,
           letterSpacing: letterSpacing,
         ),
       ),
-      foregroundColor: MaterialStateProperty.resolveWith<Color>(
+      foregroundColor: WidgetStateProperty.resolveWith<Color>(
         (states) => _getColor(states, textColor),
       ),
-      backgroundColor: MaterialStateProperty.resolveWith<Color>(
+      backgroundColor: WidgetStateProperty.resolveWith<Color>(
         (states) => _getColor(states, backgroundColor),
       ),
     );
   }
 
-  static ButtonStyle outlinedButton(TextStyle textStyle, Color color) =>
-      ButtonStyle(
+  static ButtonStyle outlinedButton(TextStyle textStyle, Color color) => ButtonStyle(
         shape: _defaultButtonShape(),
-        side: MaterialStateProperty.resolveWith<BorderSide>(
+        side: WidgetStateProperty.resolveWith<BorderSide>(
           (states) => BorderSide(
             color: _getColor(states, color),
             width: borderWidth,
           ),
         ),
-        textStyle: MaterialStateProperty.all<TextStyle>(
+        textStyle: WidgetStateProperty.all<TextStyle>(
           textStyle.copyWith(
             height: textHeight,
             letterSpacing: letterSpacing,
           ),
         ),
-        foregroundColor: MaterialStateProperty.resolveWith<Color>(
+        foregroundColor: WidgetStateProperty.resolveWith<Color>(
           (states) => _getColor(states, color),
         ),
       );
 
-  static Color _getColor(Set<MaterialState> states, Color color) {
-    if (states.contains(MaterialState.pressed)) {
+  static Color _getColor(Set<WidgetState> states, Color color) {
+    if (states.contains(WidgetState.pressed)) {
       return color;
-    } else if (states.contains(MaterialState.disabled)) {
+    } else if (states.contains(WidgetState.disabled)) {
       return color.withOpacity(0.5);
     }
     return color;
   }
 
-  static ButtonStyle textButton(TextStyle textStyle, Color color) =>
-      ButtonStyle(
+  static ButtonStyle textButton(TextStyle textStyle, Color color) => ButtonStyle(
         shape: _defaultButtonShape(),
-        textStyle: MaterialStateProperty.all<TextStyle>(
+        textStyle: WidgetStateProperty.all<TextStyle>(
           textStyle.copyWith(
             height: textHeight,
             letterSpacing: letterSpacing,
           ),
         ),
-        foregroundColor: MaterialStateProperty.resolveWith<Color>(
+        foregroundColor: WidgetStateProperty.resolveWith<Color>(
           (states) => _getColor(states, color),
         ),
       );
 
-  static MaterialStateProperty<OutlinedBorder> _defaultButtonShape() =>
-      MaterialStateProperty.all<OutlinedBorder>(
+  static WidgetStateProperty<OutlinedBorder> _defaultButtonShape() =>
+      WidgetStateProperty.all<OutlinedBorder>(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50),
         ),
@@ -112,9 +110,7 @@ class AppButtonTheme {
 
   @override
   int get hashCode =>
-      elevatedButtonStyle.hashCode ^
-      outlinedButtonStyle.hashCode ^
-      textButtonStyle.hashCode;
+      elevatedButtonStyle.hashCode ^ outlinedButtonStyle.hashCode ^ textButtonStyle.hashCode;
 }
 
 extension AppButtonThemeContextEx on BuildContext {

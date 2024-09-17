@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lanars_test_task/presentation/core/colors.dart';
@@ -56,8 +57,7 @@ class PostItem extends StatelessWidget {
                       if (subtitle != null)
                         Text(
                           subtitle!,
-                          style: context.appTextTheme.h6
-                              .paint(AppColors.textFieldTextColor),
+                          style: context.appTextTheme.h6.paint(AppColors.textFieldTextColor),
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                         ),

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lanars_test_task/bloc/core/observers/logging.dart';
 import 'package:lanars_test_task/hive.dart';
 import 'package:lanars_test_task/presentation/core/app.dart';
+import 'package:lanars_test_task/presentation/core/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -14,6 +15,8 @@ void main() {
       if (kDebugMode) {
         Bloc.observer = LoggingBlocObserver();
       }
+      configureDependencies();
+
       await initHive();
 
       final sharedPreferences = await SharedPreferences.getInstance();

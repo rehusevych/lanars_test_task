@@ -13,14 +13,13 @@ class AppTheme extends StatelessWidget {
   final Widget? child;
 
   const AppTheme({
-    Key? key,
+    super.key,
     required this.data,
     required this.child,
-  }) : super(key: key);
+  });
 
   static AppThemeData of(BuildContext context) {
-    final inheritedTheme =
-        context.dependOnInheritedWidgetOfExactType<_InheritedAppTheme>();
+    final inheritedTheme = context.dependOnInheritedWidgetOfExactType<_InheritedAppTheme>();
     return inheritedTheme!.theme.data;
   }
 
@@ -38,16 +37,14 @@ class AppTheme extends StatelessWidget {
 
 class _InheritedAppTheme extends InheritedWidget {
   const _InheritedAppTheme({
-    Key? key,
     required this.theme,
-    required Widget child,
-  }) : super(key: key, child: child);
+    required super.child,
+  });
 
   final AppTheme theme;
 
   @override
-  bool updateShouldNotify(covariant _InheritedAppTheme old) =>
-      theme.data != old.theme.data;
+  bool updateShouldNotify(covariant _InheritedAppTheme old) => theme.data != old.theme.data;
 }
 
 extension ThemeContextEx on BuildContext {

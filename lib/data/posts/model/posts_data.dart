@@ -5,7 +5,6 @@ import 'package:lanars_test_task/presentation/core/constants/hive_type_id.dart';
 
 part 'posts_data.freezed.dart';
 part 'posts_data.g.dart';
-part 'posts_data.hive.dart';
 
 @freezed
 class PostsData with _$PostsData {

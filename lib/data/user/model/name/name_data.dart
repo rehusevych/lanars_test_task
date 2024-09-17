@@ -4,7 +4,6 @@ import 'package:lanars_test_task/presentation/core/constants/hive_type_id.dart';
 
 part 'name_data.g.dart';
 part 'name_data.freezed.dart';
-part 'name_data.hive.dart';
 
 @freezed
 class NameData with _$NameData {

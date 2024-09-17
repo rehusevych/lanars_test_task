@@ -4,7 +4,6 @@ import 'package:lanars_test_task/presentation/core/constants/hive_type_id.dart';
 
 part 'source_data.g.dart';
 part 'source_data.freezed.dart';
-part 'source_data.hive.dart';
 
 @freezed
 class SourceData with _$SourceData {
@@ -18,6 +17,5 @@ class SourceData with _$SourceData {
     @HiveField(5) required String tiny,
   }) = _SourceData;
 
-  factory SourceData.fromJson(Map<String, dynamic> json) =>
-      _$SourceDataFromJson(json);
+  factory SourceData.fromJson(Map<String, dynamic> json) => _$SourceDataFromJson(json);
 }

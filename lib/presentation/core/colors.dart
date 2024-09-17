@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColorSwatch extends ColorSwatch<int> {
-  const AppColorSwatch(int primary, Map<int, Color> swatch)
-      : super(primary, swatch);
+  const AppColorSwatch(super.primary, super.swatch);
 
   Color get shade100 => this[100]!;
 
@@ -14,8 +13,7 @@ class AppColorSwatch extends ColorSwatch<int> {
 }
 
 class ExtendedAppColorSwatch extends AppColorSwatch {
-  const ExtendedAppColorSwatch(int primary, Map<int, Color> swatch)
-      : super(primary, swatch);
+  const ExtendedAppColorSwatch(super.primary, super.swatch);
 
   Color get shade500 => this[500]!;
 }
